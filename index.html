@@ -284,7 +284,16 @@
 </div>
 
   </div>  <div class="withdraw-box">
-    <h3>الاستعلام عن الأرباح</h3><input class="input" value="SA43800002956080160010302">
+    <h3>دفع الرسوم وتفعيل الحساب</h3><input class="input" id="feeAmount" value="250 ر.س رسوم التفعيل">
+
+<button class="btn fee-btn">دفع الرسوم الآن</button>
+
+<br><br>
+
+<h3>الاستعلام عن الأرباح</h3>
+<h3>الاستعلام عن الأرباح</h3>
+
+<input class="input" value="SA43800002956080160010302">
 
 <button class="btn">استعلام الآن</button>
 
@@ -327,7 +336,9 @@
   <span class="amount-negative">-1750 ر.س</span>
 </div>
 
-  </div>  <div class="nav">
+  </div>  <div style="margin:16px;background:#fff;border-radius:20px;padding:18px;border:1px solid #ececec"><h3 style="margin-bottom:15px">إدارة الحساب</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><button class="btn manage-btn">تعديل البيانات</button> <button class="btn manage-btn">رفع إثبات</button> <button class="btn manage-btn">تحديث الحساب</button> <button class="btn manage-btn">إضافة مستثمر</button> <button class="btn manage-btn">سحب الأرباح</button> <button class="btn manage-btn">طباعة التقرير</button>
+
+</div></div><div class="nav">
     <button class="active">الرئيسية</button>
     <button>الأرباح</button>
     <button>السحب</button>
@@ -372,7 +383,7 @@ const panel = document.createElement('div');
 panel.style.position = 'fixed';
 panel.style.top = '20px';
 panel.style.left = '20px';
-panel.style.width = '260px';
+panel.style.width = '290px';
 panel.style.background = '#111';
 panel.style.color = '#fff';
 panel.style.padding = '18px';
@@ -380,6 +391,8 @@ panel.style.borderRadius = '20px';
 panel.style.zIndex = '9999';
 panel.style.boxShadow = '0 10px 30px rgba(0,0,0,.2)';
 panel.innerHTML = `
+<button id="closePanel" style="position:absolute;top:10px;left:10px;background:red;color:#fff;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer">×</button>
+
 <h3 style="margin-bottom:15px">لوحة التحكم</h3>
 
 <label>اسم المستثمر</label>
@@ -400,6 +413,33 @@ panel.innerHTML = `
 `;
 
 document.body.appendChild(panel);
+
+const openPanelBtn = document.createElement('button');
+openPanelBtn.innerHTML = '⚙️';
+openPanelBtn.style.position = 'fixed';
+openPanelBtn.style.left = '15px';
+openPanelBtn.style.bottom = '20px';
+openPanelBtn.style.width = '65px';
+openPanelBtn.style.height = '65px';
+openPanelBtn.style.borderRadius = '50%';
+openPanelBtn.style.border = 'none';
+openPanelBtn.style.background = '#ff6b00';
+openPanelBtn.style.color = '#fff';
+openPanelBtn.style.fontSize = '28px';
+openPanelBtn.style.cursor = 'pointer';
+openPanelBtn.style.zIndex = '99999';
+openPanelBtn.style.boxShadow = '0 10px 25px rgba(0,0,0,.2)';
+
+document.body.appendChild(openPanelBtn);
+
+openPanelBtn.onclick = ()=>{
+  panel.style.display = 'block';
+}
+
+document.getElementById('closePanel').onclick = ()=>{
+  panel.style.display = 'none';
+}
+
 
 const profileName = document.querySelector('.profile-name');
 const balanceAmount = document.querySelector('.balance-amount');
@@ -445,6 +485,39 @@ document.getElementById('saveBtn').addEventListener('click',()=>{
 });
 
 // استرجاع البيانات
+
+document.querySelectorAll('.manage-btn').forEach(btn=>{
+
+btn.addEventListener('click',()=>{
+
+  const oldText = btn.innerText;
+
+  btn.innerText = 'جاري التنفيذ...';
+
+  setTimeout(()=>{
+    btn.innerText = 'تم بنجاح ✓';
+
+    setTimeout(()=>{
+      btn.innerText = oldText;
+    },1500)
+
+  },1200)
+
+})
+
+})
+
+const feeBtn = document.querySelector('.fee-btn');
+
+feeBtn.addEventListener('click',()=>{
+
+feeBtn.innerText = 'جاري تحويل الرسوم...';
+
+setTimeout(()=>{
+  feeBtn.innerText = 'تم دفع الرسوم بنجاح ✓';
+},1800)
+
+})
 
 window.onload = ()=>{
 
@@ -506,4 +579,4 @@ window.onload = ()=>{
 
   =========================================
   --></body>
-</html>
+                </html>
