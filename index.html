@@ -333,15 +333,140 @@
     <button>السحب</button>
     <button>الحساب</button>
   </div></div><script>
-  const btn = document.querySelector('.btn');
 
-  btn.addEventListener('click', () => {
-    btn.innerText = 'جاري الاستعلام...';
+const allButtons = document.querySelectorAll('.btn');
 
-    setTimeout(() => {
-      btn.innerText = 'تم الاستعلام بنجاح';
-    }, 2000);
+allButtons.forEach((btn)=>{
+  btn.addEventListener('click',()=>{
+
+    const text = btn.innerText;
+
+    if(text.includes('استعلام')){
+      btn.innerText = 'جاري الاستعلام...';
+
+      setTimeout(()=>{
+        btn.innerText = 'تم الاستعلام بنجاح';
+      },1500);
+    }
+
+    if(text.includes('استلام')){
+      btn.innerText = 'تم تحويل الأرباح';
+    }
+
   });
+});
+
+// تفعيل التعديل الكامل
+
+const editableElements = document.querySelectorAll(
+  '.balance-amount,.profile-name,.reward-amount,.info,.amount-positive,.amount-negative,.balance-title,.history-title,.chart-header span,.green,h2,h3,h4,.item span'
+);
+
+editableElements.forEach(el => {
+  el.contentEditable = true;
+});
+
+// إنشاء لوحة تحكم ديناميكية
+
+const panel = document.createElement('div');
+panel.style.position = 'fixed';
+panel.style.top = '20px';
+panel.style.left = '20px';
+panel.style.width = '260px';
+panel.style.background = '#111';
+panel.style.color = '#fff';
+panel.style.padding = '18px';
+panel.style.borderRadius = '20px';
+panel.style.zIndex = '9999';
+panel.style.boxShadow = '0 10px 30px rgba(0,0,0,.2)';
+panel.innerHTML = `
+<h3 style="margin-bottom:15px">لوحة التحكم</h3>
+
+<label>اسم المستثمر</label>
+<input id="nameInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
+
+<label>الرصيد</label>
+<input id="balanceInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
+
+<label>آخر الأرباح</label>
+<input id="profitInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
+
+<label>لون الخلفية</label>
+<input type="color" id="bgColor" style="width:100%;height:45px;border:none;border-radius:10px;margin-top:8px" />
+
+<button id="saveBtn" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:12px;background:#ff6b00;color:white;font-weight:bold;cursor:pointer">
+حفظ التعديلات
+</button>
+`;
+
+document.body.appendChild(panel);
+
+const profileName = document.querySelector('.profile-name');
+const balanceAmount = document.querySelector('.balance-amount');
+const rewardAmount = document.querySelector('.reward-amount');
+const phone = document.querySelector('.phone');
+
+const nameInput = document.getElementById('nameInput');
+const balanceInput = document.getElementById('balanceInput');
+const profitInput = document.getElementById('profitInput');
+const bgColor = document.getElementById('bgColor');
+
+nameInput.value = profileName.innerText;
+balanceInput.value = balanceAmount.innerText;
+profitInput.value = rewardAmount.innerText;
+
+nameInput.addEventListener('input',()=>{
+  profileName.innerText = nameInput.value;
+});
+
+balanceInput.addEventListener('input',()=>{
+  balanceAmount.innerText = balanceInput.value;
+});
+
+profitInput.addEventListener('input',()=>{
+  rewardAmount.innerText = profitInput.value;
+});
+
+bgColor.addEventListener('input',()=>{
+  phone.style.background = bgColor.value;
+});
+
+// حفظ محلي
+
+document.getElementById('saveBtn').addEventListener('click',()=>{
+
+  localStorage.setItem('profileName', profileName.innerText);
+  localStorage.setItem('balanceAmount', balanceAmount.innerText);
+  localStorage.setItem('rewardAmount', rewardAmount.innerText);
+  localStorage.setItem('bgColor', bgColor.value);
+
+  alert('تم حفظ جميع التعديلات');
+
+});
+
+// استرجاع البيانات
+
+window.onload = ()=>{
+
+  if(localStorage.getItem('profileName')){
+    profileName.innerText = localStorage.getItem('profileName');
+  }
+
+  if(localStorage.getItem('balanceAmount')){
+    balanceAmount.innerText = localStorage.getItem('balanceAmount');
+  }
+
+  if(localStorage.getItem('rewardAmount')){
+    rewardAmount.innerText = localStorage.getItem('rewardAmount');
+  }
+
+  if(localStorage.getItem('bgColor')){
+    phone.style.background = localStorage.getItem('bgColor');
+    bgColor.value = localStorage.getItem('bgColor');
+  }
+
+}
+
 </script>  <!--
   =========================================
   طريقة الرفع إلى GitHub Pages
@@ -381,4 +506,4 @@
 
   =========================================
   --></body>
-  </html>
+</html>
