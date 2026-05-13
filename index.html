@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الأرباح</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif;
+    }body {
+  background: #f3f5f7;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: #111;
+}
+
+.phone {
+  width: 390px;
+  min-height: 100vh;
+  background: #fff;
+  border-radius: 35px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.header {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.header h2 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.balance-box {
+  margin: 16px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #ececec;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.balance-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.balance-title {
+  color: #777;
+  font-size: 14px;
+}
+
+.balance-amount {
+  font-size: 34px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.green {
+  color: #00b26b;
+}
+
+.chart-card {
+  margin: 16px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid #ececec;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: #666;
+  font-size: 13px;
+}
+
+.chart {
+  width: 100%;
+  height: 170px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.withdraw-box {
+  background: #111;
+  color: #fff;
+  margin: 16px;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.withdraw-box h3 {
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #1f1f1f;
+  color: #fff;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg,#ff6b00,#ff8f3d);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.02);
+}
+
+.profile-card {
+  margin: 16px;
+  background: #f6fff9;
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid #dcf7e6;
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.status {
+  background: #00b26b;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.info {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #555;
+  line-height: 2;
+}
+
+.reward-card {
+  margin: 16px;
+  background: #fff8f3;
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid #ffe1cb;
+}
+
+.reward-card h4 {
+  color: #777;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.reward-amount {
+  color: #ff6b00;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.history {
+  margin: 16px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #ececec;
+  overflow: hidden;
+}
+
+.history-title {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 700;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.amount-positive {
+  color: #00b26b;
+  font-weight: 700;
+}
+
+.amount-negative {
+  color: #ff6b00;
+  font-weight: 700;
+}
+
+.nav {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #eee;
+  padding: 14px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav button {
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.active {
+  color: #ff6b00 !important;
+  font-weight: 700;
+}
+
+  </style>
+</head>
+<body><div class="phone">  <div class="header">
+    <span>☰</span>
+    <h2>لوحة الأرباح</h2>
+    <span>🔔</span>
+  </div>  <div class="balance-box">
+    <div class="balance-top">
+      <div class="balance-title">إجمالي الأرباح</div>
+      <div class="green">+18%</div>
+    </div><div class="balance-amount">12,500 ر.س</div>
+
+  </div>  <div class="chart-card">
+    <div class="chart-header">
+      <span>تحليل الأرباح</span>
+      <span>آخر 6 أشهر</span>
+    </div><div class="chart">
+  <svg viewBox="0 0 400 180">
+    <path d="M0 40 C50 90 100 150 150 100 C200 50 250 170 300 120 C350 70 380 20 400 10"
+      fill="none"
+      stroke="#111"
+      stroke-width="4"
+      stroke-linecap="round"/>
+  </svg>
+</div>
+
+  </div>  <div class="withdraw-box">
+    <h3>الاستعلام عن الأرباح</h3><input class="input" value="SA43800002956080160010302">
+
+<button class="btn">استعلام الآن</button>
+
+  </div>  <div class="profile-card">
+    <div class="profile-top">
+      <div>
+        <div class="profile-name">فهد بن خالد</div>
+        <div style="font-size:13px;color:#00b26b">مستثمر فعال</div>
+      </div><div class="status">نشط</div>
+</div>
+
+<div class="info">
+  📞 0848484734<br>
+  💳 SA43800002956080160010302<br>
+  💰 الرصيد الحالي: 4,000 ر.س
+</div>
+
+  </div>  <div class="reward-card">
+    <h4>آخر الأرباح المستلمة</h4>
+    <div class="reward-amount">4500 ر.س</div>
+    <button class="btn">استلام الآن</button>
+  </div>  <div class="history">
+    <div class="history-title">سجل العمليات</div><div class="item">
+  <span>توزيع أرباح</span>
+  <span class="amount-positive">+1200 ر.س</span>
+</div>
+
+<div class="item">
+  <span>تنشيط نظام</span>
+  <span class="amount-negative">-750 ر.س</span>
+</div>
+
+<div class="item">
+  <span>توزيع أرباح</span>
+  <span class="amount-positive">+5000 ر.س</span>
+</div>
+
+<div class="item">
+  <span>اشتراك جديد</span>
+  <span class="amount-negative">-1750 ر.س</span>
+</div>
+
+  </div>  <div class="nav">
+    <button class="active">الرئيسية</button>
+    <button>الأرباح</button>
+    <button>السحب</button>
+    <button>الحساب</button>
+  </div></div><script>
+  const btn = document.querySelector('.btn');
+
+  btn.addEventListener('click', () => {
+    btn.innerText = 'جاري الاستعلام...';
+
+    setTimeout(() => {
+      btn.innerText = 'تم الاستعلام بنجاح';
+    }, 2000);
+  });
+</script>  <!--
+  =========================================
+  طريقة الرفع إلى GitHub Pages
+  =========================================
+
+  1- أنشئ مستودع جديد في GitHub
+  2- سمه بأي اسم مثل:
+     investment-dashboard
+
+  3- ارفع هذا الملف باسم:
+     index.html
+
+  4- ادخل إلى:
+     Settings > Pages
+
+  5- اختر:
+     Deploy from branch
+
+  6- اختر:
+     Branch = main
+     Folder = /root
+
+  7- اضغط Save
+
+  بعدها سيظهر لك رابط الموقع مباشرة.
+
+  =========================================
+  أوامر Git السريعة:
+  =========================================
+
+  git init
+  git add .
+  git commit -m "first upload"
+  git branch -M main
+  git remote add origin https://github.com/USERNAME/REPO.git
+  git push -u origin main
+
+  =========================================
+  --></body>
+  </html>
