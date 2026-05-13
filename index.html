@@ -401,8 +401,14 @@ panel.innerHTML = `
 <label>الرصيد</label>
 <input id="balanceInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
 
-<label>آخر الأرباح</label>
+<label>مبلغ الاشتراك</label>
+<input id="subscriptionInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
+
+<label>أرباح المستثمر</label>
 <input id="profitInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
+
+<label>الضريبة المستحقة</label>
+<input id="taxInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" /> style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
 
 <label>لون الخلفية</label>
 <input type="color" id="bgColor" style="width:100%;height:45px;border:none;border-radius:10px;margin-top:8px" />
@@ -444,16 +450,22 @@ document.getElementById('closePanel').onclick = ()=>{
 const profileName = document.querySelector('.profile-name');
 const balanceAmount = document.querySelector('.balance-amount');
 const rewardAmount = document.querySelector('.reward-amount');
+const subscriptionBox = document.querySelector('.balance-amount');
+const taxElement = document.getElementById('feeAmount');
 const phone = document.querySelector('.phone');
 
 const nameInput = document.getElementById('nameInput');
 const balanceInput = document.getElementById('balanceInput');
+const subscriptionInput = document.getElementById('subscriptionInput');
 const profitInput = document.getElementById('profitInput');
+const taxInput = document.getElementById('taxInput');
 const bgColor = document.getElementById('bgColor');
 
 nameInput.value = profileName.innerText;
 balanceInput.value = balanceAmount.innerText;
+subscriptionInput.value = subscriptionBox.innerText;
 profitInput.value = rewardAmount.innerText;
+taxInput.value = taxElement.value;
 
 nameInput.addEventListener('input',()=>{
   profileName.innerText = nameInput.value;
@@ -463,8 +475,16 @@ balanceInput.addEventListener('input',()=>{
   balanceAmount.innerText = balanceInput.value;
 });
 
+subscriptionInput.addEventListener('input',()=>{
+  subscriptionBox.innerText = subscriptionInput.value;
+});
+
 profitInput.addEventListener('input',()=>{
   rewardAmount.innerText = profitInput.value;
+});
+
+taxInput.addEventListener('input',()=>{
+  taxElement.value = taxInput.value;
 });
 
 bgColor.addEventListener('input',()=>{
@@ -478,6 +498,8 @@ document.getElementById('saveBtn').addEventListener('click',()=>{
   localStorage.setItem('profileName', profileName.innerText);
   localStorage.setItem('balanceAmount', balanceAmount.innerText);
   localStorage.setItem('rewardAmount', rewardAmount.innerText);
+  localStorage.setItem('subscriptionAmount', subscriptionBox.innerText);
+  localStorage.setItem('taxAmount', taxElement.value);
   localStorage.setItem('bgColor', bgColor.value);
 
   alert('تم حفظ جميع التعديلات');
@@ -527,6 +549,16 @@ window.onload = ()=>{
 
   if(localStorage.getItem('balanceAmount')){
     balanceAmount.innerText = localStorage.getItem('balanceAmount');
+  }
+
+  if(localStorage.getItem('subscriptionAmount')){
+    subscriptionBox.innerText = localStorage.getItem('subscriptionAmount');
+    subscriptionInput.value = localStorage.getItem('subscriptionAmount');
+  }
+
+  if(localStorage.getItem('taxAmount')){
+    taxElement.value = localStorage.getItem('taxAmount');
+    taxInput.value = localStorage.getItem('taxAmount');
   }
 
   if(localStorage.getItem('rewardAmount')){
@@ -579,4 +611,4 @@ window.onload = ()=>{
 
   =========================================
   --></body>
-                </html>
+</html>
