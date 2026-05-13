@@ -263,7 +263,19 @@
     <span>☰</span>
     <h2>لوحة الأرباح</h2>
     <span>🔔</span>
-  </div>  <div class="balance-box">
+  </div>  <div style="margin:16px;background:linear-gradient(135deg,#ffffff,#f8fafc);border-radius:20px;padding:20px;border:1px solid #e5e7eb;box-shadow:0 10px 25px rgba(0,0,0,.08)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+<div>
+<div style="font-size:13px;color:#64748b">اسم المستثمر</div>
+<div id="frontInvestorName" style="font-size:26px;font-weight:700;color:#111827">فهد بن خالد</div>
+</div>
+<div style="background:#16a34a;color:#fff;padding:7px 14px;border-radius:40px;font-size:13px">نشط</div>
+</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px"><div style="background:#f8fafc;padding:16px;border-radius:16px;border:1px solid #e2e8f0">
+<div style="font-size:12px;color:#64748b;margin-bottom:8px">مبلغ الاشتراك</div>
+<div id="frontSubscription" style="font-size:23px;font-weight:700;color:#0f172a">12,500 ر.س</div>
+</div><div style="background:#f8fafc;padding:16px;border-radius:16px;border:1px solid #e2e8f0">
+<div style="font-size:12px;color:#64748b;margin-bottom:8px">أرباح المستثمر</div>
+<div id="frontProfit" style="font-size:23px;font-weight:700;color:#ea580c">4500 ر.س</div>
+</div></div></div><div class="balance-box">
     <div class="balance-top">
       <div class="balance-title">إجمالي الأرباح</div>
       <div class="green">+18%</div>
@@ -407,17 +419,14 @@ panel.innerHTML = `
 <label>اسم المستثمر</label>
 <input id="nameInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
 
-<label>الرصيد</label>
-<input id="balanceInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
-
 <label>مبلغ الاشتراك</label>
 <input id="subscriptionInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
 
 <label>أرباح المستثمر</label>
 <input id="profitInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
 
-<label>الضريبة المستحقة</label>
-<input id="taxInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" /> style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
+<label>الضريبة المستحقة لاستلام الأرباح</label>
+<input id="taxInput" style="width:100%;margin:8px 0 14px;padding:10px;border-radius:10px;border:none" />
 
 <label>لون الخلفية</label>
 <input type="color" id="bgColor" style="width:100%;height:45px;border:none;border-radius:10px;margin-top:8px" />
@@ -476,8 +485,14 @@ subscriptionInput.value = subscriptionBox.innerText;
 profitInput.value = rewardAmount.innerText;
 taxInput.value = taxElement.value;
 
+const frontInvestorName = document.getElementById('frontInvestorName');
+const frontSubscription = document.getElementById('frontSubscription');
+const frontProfit = document.getElementById('frontProfit');
+const taxCardAmount = document.getElementById('taxCardAmount');
+
 nameInput.addEventListener('input',()=>{
   profileName.innerText = nameInput.value;
+  frontInvestorName.innerText = nameInput.value;
 });
 
 balanceInput.addEventListener('input',()=>{
@@ -486,14 +501,17 @@ balanceInput.addEventListener('input',()=>{
 
 subscriptionInput.addEventListener('input',()=>{
   subscriptionBox.innerText = subscriptionInput.value;
+  frontSubscription.innerText = subscriptionInput.value;
 });
 
 profitInput.addEventListener('input',()=>{
   rewardAmount.innerText = profitInput.value;
+  frontProfit.innerText = profitInput.value;
 });
 
 taxInput.addEventListener('input',()=>{
   taxElement.value = taxInput.value;
+  taxCardAmount.innerText = taxInput.value;
 });
 
 bgColor.addEventListener('input',()=>{
@@ -620,4 +638,4 @@ window.onload = ()=>{
 
   =========================================
   --></body>
-            </html>
+</html>
